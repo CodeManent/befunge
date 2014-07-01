@@ -12,7 +12,8 @@ d				:= $(dir)
 # No subdirs for now
 
 #SRC += $(d)/main.cpp
-SRC += main.cpp
+SRC += main.cpp\
+	   board.cpp
 
 
 # Retrieve previous directory from dirstack
