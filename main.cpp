@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <stdexcept>
 
 #include "board.h"
 #include "parser.h"
@@ -19,9 +20,14 @@ int main(int argc, char* argv[]){
 
 	Parser p;
 	p.setBoard(b);
-	
-	//Run ultil an end symbol is found
-	while(p.step()){
+
+	try{
+		//Run ultil an end symbol is found
+		while(p.step()){
+		}
+	}
+	catch(const std::exception &ex){
+		std::cerr << "Error: " <<  ex.what() << std::endl;
 	}
 
 	return EXIT_SUCCESS;

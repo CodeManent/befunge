@@ -19,14 +19,13 @@ private:
 	Board board;
 
 	class ProgramCounter{
-		enum Direction{UP, DOWN, LEFT, RIGHT};
 	public:
+		enum Direction{UP, DOWN, LEFT, RIGHT};
 		ProgramCounter(size_t x=0, size_t y=0, Direction dir=RIGHT);
 		ProgramCounter(const ProgramCounter& pc2);
 
-		void forward();
+		void forward(const Board& board);
 
-	private:
 		size_t x;
 		size_t y;
 		Direction dir;

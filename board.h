@@ -21,9 +21,14 @@ public:
 	char& operator()(const size_t x, const size_t y);
 	char operator()(const size_t x, const size_t y) const;
 
+	size_t width() const;
+	size_t height() const;
+
 	std::ostream& operator<<(std::ostream& os) const;
 
 private:
+	void fill();
+
 	std::vector<std::vector<char>> board;
 	static const size_t board_size_limit = 65535;
 };

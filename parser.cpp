@@ -1,4 +1,6 @@
 #include "parser.h"
+#include <stdexcept>
+#include <sstream>
 
 Parser::Parser()
 	:board()
@@ -10,10 +12,33 @@ Parser::Parser()
 int Parser::step()
 {
 	// TODO: fill method
-	
-	return false;
-}
+	char op = board(pc.x, pc.y);
 
+	switch(op){
+	case ' ':
+		//nop
+		break;
+
+	case '@':
+		return false;
+
+	default:
+	{
+		std::stringstream ss;
+		
+		ss << "Unrecognised operation "
+			<< "\"" << op << "\" (" << (int)op << ")"
+			<< " at (" << pc.x << ", " << pc.y << ")"
+			<< std::endl;
+
+		throw std::runtime_error(ss.str());
+	}
+	}
+
+	pc.forward(board);
+
+	return true;
+}
 
 void Parser::setBoard(Board&& board)
 {
@@ -45,3 +70,42 @@ Parser::ProgramCounter::ProgramCounter(const Parser::ProgramCounter &pc2)
 {
 }
 
+void Parser::ProgramCounter::forward(const Board& board)
+{
+	switch(dir){
+	case UP:
+		if(y == 0){
+			y = board.height();
+		}
+		else{
+			--y;
+		}
+		break;
+
+	case DOWN:
+		if(y == board.height()){
+			y = 0;
+		}
+		else{
+			y++;
+		}
+		break;
+
+	case LEFT:
+		if(x == 0){
+			x = board.width();
+		}
+		else{
+			--x;
+		}
+		break;
+
+	case RIGHT:
+		if(x == board.width()){
+			x = 0;
+		}
+		else{
+			++x;
+		}
+	}
+}

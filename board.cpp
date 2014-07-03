@@ -54,6 +54,9 @@ Board::Board(const std::string path):
 	if(line.size()){
 		board.push_back(line);
 	}
+
+	// Append spaces to the lines to make them have the same length
+	fill();
 }
 
 Board::~Board()
@@ -68,6 +71,16 @@ char& Board::operator()(const size_t x, const size_t y)
 char Board::operator()(const size_t x, const size_t y) const
 {
 	return board.at(x).at(y);
+}
+
+size_t Board::width() const
+{
+	return board.front().size();
+}
+
+size_t Board::height() const
+{
+	return board.size();
 }
 
 ostream& Board::operator<<(ostream& os) const
@@ -86,3 +99,24 @@ ostream& operator<<(ostream& os, const Board& board)
 	return board << os;
 }
 
+// Fills the board's lines with whitespace at the endto make them have
+// the same size.
+void Board::fill()
+{
+	size_t maxLength = board.front().size();
+
+	// Get the max line size
+	for(const auto &line: board){
+		if(maxLength < line.size()){
+			maxLength = line.size();
+		}
+	}
+
+	// Append spaces at the end of each line that needs them
+	for(auto &line: board){
+		auto toAdd = maxLength - line.size();
+		while(toAdd--){
+			line.push_back(' ');
+		}
+	}
+}
