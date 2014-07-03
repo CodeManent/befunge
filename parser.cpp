@@ -6,9 +6,12 @@ Parser::Parser()
 {
 }
 
-void Parser::step()
+//Returns false on end symbol
+int Parser::step()
 {
 	// TODO: fill method
+	
+	return false;
 }
 
 

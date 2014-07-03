@@ -2,6 +2,7 @@
 #include <cstdlib>
 
 #include "board.h"
+#include "parser.h"
 
 int main(int argc, char* argv[]){
 	using namespace std;
@@ -15,6 +16,13 @@ int main(int argc, char* argv[]){
 	Board b(argv[1]);
 
 	cout << b << endl;
+
+	Parser p;
+	p.setBoard(b);
+	
+	//Run ultil an end symbol is found
+	while(p.step()){
+	}
 
 	return EXIT_SUCCESS;
 }

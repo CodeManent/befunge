@@ -8,7 +8,7 @@ public:
 	Parser();
 
 	// Forwards the simulation
-	void step();
+	int step();
 
 	// Getters ans setters for the board
 	void setBoard(Board&& board);
