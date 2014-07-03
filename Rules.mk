@@ -13,7 +13,8 @@ d				:= $(dir)
 
 #SRC += $(d)/main.cpp
 SRC += main.cpp\
-	   board.cpp
+	   board.cpp\
+	   parser.cpp
 
 
 # Retrieve previous directory from dirstack
