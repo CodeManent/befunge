@@ -27,12 +27,12 @@ Board::Board(const std::string path):
 	// As we still have characters and laven't read much too many
 	while(!infile.eof() && --read){
 		// Get a char and push it in the line
-		char ch = 0;
+		char ch = ' ';
 		infile.get(ch);
 	
 		switch(ch){
-		case 10:
-			// On the end of the ilne, add it to the end of the board
+		case '\n':
+			// On the end of the line, add it to the end of the board
 			board.push_back(line);
 			line.clear();
 			break;
@@ -55,8 +55,17 @@ Board::Board(const std::string path):
 		board.push_back(line);
 	}
 
+	//make sure that the board has at least 25 lines and 80 columns
+	while(board.size() < 25){
+		board.emplace_back(vector<char>());
+	}
+	board.emplace_back(vector<char>(81, ' '));
+
+
 	// Append spaces to the lines to make them have the same length
 	fill();
+
+	board.pop_back();
 }
 
 Board::~Board()
@@ -65,12 +74,12 @@ Board::~Board()
 
 char& Board::operator()(const size_t x, const size_t y)
 {
-	return board.at(x).at(y);
+	return board.at(y).at(x);
 }
 
 char Board::operator()(const size_t x, const size_t y) const
 {
-	return board.at(x).at(y);
+	return board.at(y).at(x);
 }
 
 size_t Board::width() const

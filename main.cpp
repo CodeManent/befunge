@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
 	clog << "Loading board " << argv[1] << endl;
 	Board b(argv[1]);
 
-	cout << b << endl;
+	// cout << b << endl;
 
 	Parser p;
 	p.setBoard(b);
@@ -28,7 +28,10 @@ int main(int argc, char* argv[]){
 	}
 	catch(const std::exception &ex){
 		std::cerr << "Error: " <<  ex.what() << std::endl;
+		return EXIT_FAILURE;
 	}
+
+	// cout << b << endl;
 
 	return EXIT_SUCCESS;
 }

@@ -2,6 +2,7 @@
 #define BEFUNGE_PARSER_H
 
 #include "board.h"
+#include "stack.h"
 
 class Parser{
 public:
@@ -17,6 +18,8 @@ public:
 
 private:
 	Board board;
+	Stack stack;
+	bool stringMode;
 
 	class ProgramCounter{
 	public:
@@ -25,11 +28,18 @@ private:
 		ProgramCounter(const ProgramCounter& pc2);
 
 		void forward(const Board& board);
+		void setDirection(Direction d);
 
 		size_t x;
 		size_t y;
 		Direction dir;
+
+		friend std::ostream& operator<< (std::ostream& os, const ProgramCounter &pc){
+			os << '(' << pc.x << ", " << pc.y << ')';
+			return os;
+		}
 	} pc;
+
 };
 
 #endif

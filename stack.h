@@ -36,6 +36,13 @@ public:
 		return ret;
 	}
 
+	int top(){
+		if(stack.empty())
+			return 0;
+
+		return stack.top();
+	}
+
 private:
 	std::stack<int> stack;
 };
