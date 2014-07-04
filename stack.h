@@ -3,6 +3,7 @@
 
 #include <stack>
 #include <utility>
+#include <iostream>
 
 class Stack{
 public:
@@ -11,7 +12,7 @@ public:
 	{
 	}
 
-	Stack(Stack& st)
+	Stack(const Stack& st)
 		:stack(st.stack)
 	{
 	}
@@ -42,6 +43,24 @@ public:
 
 		return stack.top();
 	}
+
+	friend std::ostream& operator<<(std::ostream& os, const Stack& st){
+		Stack st2(st);
+
+		while(!st2.stack.empty()){
+			int v = st2.pop();
+
+			if(isprint(v)){
+				std::cout << " " << (char)v;
+			}
+			else{
+				std::cout << " " << v;
+			}
+		}
+		
+		return os;
+	}
+
 
 private:
 	std::stack<int> stack;

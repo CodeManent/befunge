@@ -19,7 +19,7 @@ int Parser::step()
 	char ch = 0;
 
 	char op = ((const Board)board)(pc.x, pc.y);
-	// std::cout << pc << ' ' << op << std::endl;;
+	// std::cout << pc << ' ' << op << " stack :  "  << stack << std::endl;;
 
 	if(stringMode && op != '"'){
 		stack.push(op);
@@ -42,7 +42,7 @@ int Parser::step()
 	case '-':
 		v2 = stack.pop();
 		v1 = stack.pop();
-		stack.push(v1 = v2);
+		stack.push(v1 - v2);
 		break;
 
 	case '*':
