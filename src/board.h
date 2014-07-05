@@ -11,7 +11,7 @@ public:
 	Board();
 
 	//Reads the board from the file
-	Board(const std::string path);
+	Board(const std::string &path);
 
 	//Destructor
 	~Board();

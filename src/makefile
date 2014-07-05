@@ -1,6 +1,9 @@
 ## Build flags for all targets
 #
-CXX = g++-4.8
+ifndef CXX
+	CXX = g++-4.8
+endif
+
 CXXFLAGS += -g -pedantic -Wall -Werror -Wextra -std=c++11
 CC       = $(CXX)
 CFLAGS   = $(CXXFLAGS)

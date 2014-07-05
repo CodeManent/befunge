@@ -14,7 +14,7 @@ Board::Board():
  * Reads at most board_limit_size characters (65536) one by one and every time
  * a line is filled, it's appended to the end of the board.
  */
-Board::Board(const std::string path):
+Board::Board(const std::string &path):
 	board()
 {
 	// Open the file
