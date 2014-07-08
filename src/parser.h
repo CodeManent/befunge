@@ -3,6 +3,7 @@
 
 #include "board.h"
 #include "stack.h"
+#include <random>
 
 class Parser{
 public:
@@ -40,6 +41,8 @@ private:
 		}
 	} pc;
 
+	std::mt19937 random_engine;
+	std::uniform_int_distribution<> dist;
 };
 
 #endif

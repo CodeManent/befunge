@@ -8,6 +8,8 @@ Parser::Parser()
 	:board()
 	,stringMode(false)
 	,pc(0, 0)
+	,random_engine(std::random_device()())
+	,dist(0, 3)
 {
 }
 
@@ -180,11 +182,7 @@ int Parser::step()
 		
 	case '?':
 		{
-			//TODO: don't grab the device and reinstaciate the objects on each occurrance
-			std::random_device rd;
-			std::mt19937 engine(rd());
-			std::uniform_int_distribution<> dist(0, 3);
-			auto selection = dist(engine);
+			auto selection = dist(random_engine);
 			switch(selection){
 				case 0: pc.setDirection(ProgramCounter::UP); break;
 				case 1: pc.setDirection(ProgramCounter::DOWN); break;
